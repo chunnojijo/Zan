@@ -10,6 +10,30 @@ namespace Com.MyCompany.MyGame
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        [Tooltip("The preafab to user for representing the player")]
+        public GameObject playerPrefab;
+
+        private void Start()
+        {
+            if (playerPrefab == null)
+            {
+                Debug.LogError("<Color=Read><a>Missing</a></Color> player Prefab Reference. Please set it up in GameObject 'Game Manager'", this);
+            }
+            else
+            {
+                if (PlayerManager.LocalPlayerInstance == null)
+                {
+                    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+
+                }
+                else
+                {
+                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                }
+                
+            }
+        }
 
         #region Photon Callbacks
 
@@ -37,6 +61,7 @@ namespace Com.MyCompany.MyGame
 
             }
             Debug.LogFormat("PhotonNetwork:Loading Level :{0}", PhotonNetwork.CurrentRoom.PlayerCount);
+            PhotonNetwork.LoadLevel("Room for" + PhotonNetwork.CurrentRoom.PlayerCount);
         }
         #endregion
 
@@ -48,6 +73,17 @@ namespace Com.MyCompany.MyGame
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
+                LoadArea();
+            }
+        }
+
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            Debug.LogFormat("OnPlayerLeftRoom() {0}", otherPlayer.NickName);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.LogFormat("OnPlayerLeftRoom IsMasterClient{0}", PhotonNetwork.IsMasterClient);
                 LoadArea();
             }
         }

@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 0d9cc6d0cae1e474fb2501f587825d54
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: chest
+    100002: foot.L
+    100004: foot.R
+    100006: hand.L
+    100008: hand.R
+    100010: head
+    100012: head_end
+    100014: hips
+    100016: humanrig
+    100018: Index Distal.L
+    100020: Index Distal.L_end
+    100022: Index Distal.R
+    100024: Index Distal.R_end
+    100026: Index Intermediate.L
+    100028: Index Intermediate.R
+    100030: Index Proximal.L
+    100032: Index Proximal.R
+    100034: Little Distal.L
+    100036: Little Distal.L_end
+    100038: Little Distal.R
+    100040: Little Distal.R_end
+    100042: Little Intermediate.L
+    100044: Little Intermediate.R
+    100046: Little Proximal.L
+    100048: Little Proximal.R
+    100050: lower_arm.L
+    100052: lower_arm.R
+    100054: lower_leg.L
+    100056: lower_leg.R
+    100058: Middle Distal.L
+    100060: Middle Distal.L_end
+    100062: Middle Distal.R
+    100064: Middle Distal.R_end
+    100066: Middle Intermediate.L
+    100068: Middle Intermediate.R
+    100070: Middle Proximal.L
+    100072: Middle Proximal.R
+    100074: neck
+    100076: Plane
+    100078: Ring Distal.L
+    100080: Ring Distal.L_end
+    100082: Ring Distal.R
+    100084: Ring Distal.R_end
+    100086: Ring Intermediate.L
+    100088: Ring Intermediate.R
+    100090: Ring Proximal.L
+    100092: Ring Proximal.R
+    100094: //RootNode
+    100096: shoulder.L
+    100098: shoulder.R
+    100100: spine
+    100102: Thumb Distal.L
+    100104: Thumb Distal.L_end
+    100106: Thumb Distal.R
+    100108: Thumb Distal.R_end
+    100110: Thumb Intermediate.L
+    100112: Thumb Intermediate.R
+    100114: Thumb Proximal.L
+    100116: Thumb Proximal.R
+    100118: toe.L
+    100120: toe.L_end
+    100122: toe.R
+    100124: toe.R_end
+    100126: upper_arm.L
+    100128: upper_arm.R
+    100130: upper_leg.L
+    100132: upper_leg.R
+    400000: chest
+    400002: foot.L
+    400004: foot.R
+    400006: hand.L
+    400008: hand.R
+    400010: head
+    400012: head_end
+    400014: hips
+    400016: humanrig
+    400018: Index Distal.L
+    400020: Index Distal.L_end
+    400022: Index Distal.R
+    400024: Index Distal.R_end
+    400026: Index Intermediate.L
+    400028: Index Intermediate.R
+    400030: Index Proximal.L
+    400032: Index Proximal.R
+    400034: Little Distal.L
+    400036: Little Distal.L_end
+    400038: Little Distal.R
+    400040: Little Distal.R_end
+    400042: Little Intermediate.L
+    400044: Little Intermediate.R
+    400046: Little Proximal.L
+    400048: Little Proximal.R
+    400050: lower_arm.L
+    400052: lower_arm.R
+    400054: lower_leg.L
+    400056: lower_leg.R
+    400058: Middle Distal.L
+    400060: Middle Distal.L_end
+    400062: Middle Distal.R
+    400064: Middle Distal.R_end
+    400066: Middle Intermediate.L
+    400068: Middle Intermediate.R
+    400070: Middle Proximal.L
+    400072: Middle Proximal.R
+    400074: neck
+    400076: Plane
+    400078: Ring Distal.L
+    400080: Ring Distal.L_end
+    400082: Ring Distal.R
+    400084: Ring Distal.R_end
+    400086: Ring Intermediate.L
+    400088: Ring Intermediate.R
+    400090: Ring Proximal.L
+    400092: Ring Proximal.R
+    400094: //RootNode
+    400096: shoulder.L
+    400098: shoulder.R
+    400100: spine
+    400102: Thumb Distal.L
+    400104: Thumb Distal.L_end
+    400106: Thumb Distal.R
+    400108: Thumb Distal.R_end
+    400110: Thumb Intermediate.L
+    400112: Thumb Intermediate.R
+    400114: Thumb Proximal.L
+    400116: Thumb Proximal.R
+    400118: toe.L
+    400120: toe.L_end
+    400122: toe.R
+    400124: toe.R_end
+    400126: upper_arm.L
+    400128: upper_arm.R
+    400130: upper_leg.L
+    400132: upper_leg.R
+    2100000: Material.001
+    2100002: Material
+    4300000: Plane
+    9500000: //RootNode
+    13700000: Plane
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
