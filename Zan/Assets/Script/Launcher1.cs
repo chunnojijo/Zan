@@ -70,10 +70,11 @@ namespace Com.MyCompany.MyGame
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom(9 called by PUN. Now this client is in a room.");
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                Debug.Log("We load the Room for 1");
+                Debug.Log("We load the BattleRoom");
 
-                PhotonNetwork.LoadLevel("Room for 1");
+                PhotonNetwork.LoadLevel("BattleRoom");
             }
+
         }
 
 
