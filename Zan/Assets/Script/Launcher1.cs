@@ -13,12 +13,7 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private byte maxPlayersPerRoom = 4;
 
-        [Tooltip("The Ui Panel to let the user enter name, connect and play")]
-        [SerializeField]
-        private GameObject controlPanel;
-        [Tooltip("The UI Label to inform the user that the connection is in progress")]
-        [SerializeField]
-        private GameObject progressLabel;
+        
         #region Private Serializable Fields
 
         #endregion
@@ -41,8 +36,6 @@ namespace Com.MyCompany.MyGame
         }
         void Start()
         {
-            progressLabel.SetActive(false);
-            controlPanel.SetActive(true);
             //Connect();
         }
 
@@ -54,8 +47,6 @@ namespace Com.MyCompany.MyGame
         }
         public override void OnDisconnected(DisconnectCause cause)
         {
-            progressLabel.SetActive(false);
-            controlPanel.SetActive(true);
             Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
         }
 
@@ -68,12 +59,11 @@ namespace Com.MyCompany.MyGame
         public override void OnJoinedRoom()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom(9 called by PUN. Now this client is in a room.");
-            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
-            {
-                Debug.Log("We load the BattleRoom");
-
-                PhotonNetwork.LoadLevel("BattleRoom");
-            }
+            
+            Debug.Log("We load the BattleRoom");
+        
+            PhotonNetwork.LoadLevel("BattleRoom");
+            
 
         }
 
@@ -83,8 +73,6 @@ namespace Com.MyCompany.MyGame
         #region Public Methods
         public void Connect()
         {
-            progressLabel.SetActive(false);
-            controlPanel.SetActive(true);
             if (PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.JoinRandomRoom();

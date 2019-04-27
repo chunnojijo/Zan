@@ -80,19 +80,16 @@ namespace Com.MyCompany.MyGame
         private void Start()
         {
             PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            if (PlayerCount == 1)
+            if (PlayerCount == 1&&photonView.IsMine)
             {
                 this.transform.position = new Vector3(0, 0, -1);
                 this.transform.rotation = Quaternion.Euler(0, 0, 0);
-                if (photonView.IsMine)
-                {
-
-                }
+                
             }
-            else if (PlayerCount == 2)
+            else if (PlayerCount == 2&&photonView.IsMine)
             {
                 this.transform.position = new Vector3(0, 0, 1);
-                this.transform.rotation = Quaternion.Euler(0, 0, 180);
+                this.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             
 
@@ -122,7 +119,7 @@ namespace Com.MyCompany.MyGame
             if (!photonView.IsMine && PhotonNetwork.IsConnected) return;
             if (photonView.IsMine)
             {
-                ProcessInputs();
+                
             }
             // trigger Beams active state
             

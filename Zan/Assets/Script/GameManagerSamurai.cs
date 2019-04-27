@@ -21,10 +21,10 @@ namespace Com.MyCompany.MyGame
             }
             else
             {
-                if (PlayerManager.LocalPlayerInstance == null)
+                if (SamuraiManager.LocalPlayerInstance == null)
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
 
                 }
                 else
@@ -73,7 +73,7 @@ namespace Com.MyCompany.MyGame
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
-                LoadArea();
+                //LoadArea();
             }
         }
 
@@ -84,7 +84,7 @@ namespace Com.MyCompany.MyGame
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient{0}", PhotonNetwork.IsMasterClient);
-                LoadArea();
+                //LoadArea();
             }
         }
         #endregion
