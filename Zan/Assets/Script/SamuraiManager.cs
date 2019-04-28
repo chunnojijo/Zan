@@ -119,7 +119,10 @@ namespace Com.MyCompany.MyGame
             if (!photonView.IsMine && PhotonNetwork.IsConnected) return;
             if (photonView.IsMine)
             {
-                
+                if (Input.GetMouseButtonDown(0))
+                {
+                    this.GetComponent<Animator>().SetTrigger("Attack");
+                }
             }
             // trigger Beams active state
             
