@@ -13,6 +13,17 @@ namespace Com.MyCompany.MyGame
         [SerializeField]
         private byte maxPlayersPerRoom = 4;
 
+        [SerializeField]
+        private GameObject ConnectPanel;
+
+        [SerializeField]
+        private GameObject EnterPanel;
+
+        [SerializeField]
+        private GameObject EnterButton;
+
+        
+
         
         #region Private Serializable Fields
 
@@ -36,7 +47,13 @@ namespace Com.MyCompany.MyGame
         }
         void Start()
         {
+            PhotonNetwork.ConnectUsingSettings();
+
+            PhotonNetwork.GameVersion = gameVersion;
             //Connect();
+            ConnectPanel.SetActive(true);
+            EnterButton.SetActive(false);
+            EnterPanel.SetActive(false);
         }
 
 
@@ -44,6 +61,9 @@ namespace Com.MyCompany.MyGame
         {
             //PhotonNetwork.JoinRandomRoom();
             Debug.Log("Pun Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
+            ConnectPanel.SetActive(false);
+            EnterButton.SetActive(true);
+            EnterPanel.SetActive(false);
         }
         public override void OnDisconnected(DisconnectCause cause)
         {
@@ -53,7 +73,7 @@ namespace Com.MyCompany.MyGame
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
             Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
-            PhotonNetwork.CreateRoom(null, new RoomOptions());
+            PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
         public override void OnJoinedRoom()
@@ -73,15 +93,12 @@ namespace Com.MyCompany.MyGame
         #region Public Methods
         public void Connect()
         {
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.JoinRandomRoom();
-            }
-            else
-            {
-                PhotonNetwork.GameVersion = gameVersion;
-                PhotonNetwork.ConnectUsingSettings();
-            }
+            
+            PhotonNetwork.JoinRandomRoom();
+            ConnectPanel.SetActive(false);
+            EnterButton.SetActive(false);
+            EnterPanel.SetActive(true);
+
         }
         #endregion
 

@@ -30,29 +30,39 @@ namespace Com.MyCompany.MyGame
 
         public static GameObject LocalPlayerInstance;
 
+
+        public float slashpowermax = 3;
+        public float slashpowermin = 1.5f;
+
         #endregion
 
         #region Private Fields
-        
         private bool Slash;
-        
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
         private GameObject playerUiPrefab;
 
         private int PlayerCount = 0;
+
+
+        private Vector3 acceleration;
+        private Vector3 accelerationbef;
+        private float kakudo;
+        private float time;
+        private bool slash;
+        private Animator animator;
         #endregion
 
 
         #region MonoBehaviour CallBacks
-#if !UNITY_5_4_OR_NEWER
+        #if !UNITY_5_4_OR_NEWER
         /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
             this.CalledOnLevelWasLoaded(level);
         }
-#endif
+        #endif
 
 
         void CalledOnLevelWasLoaded(int level)
@@ -79,6 +89,16 @@ namespace Com.MyCompany.MyGame
 
         private void Start()
         {
+
+            Input.gyro.enabled = true;
+            acceleration = Input.acceleration;
+            animator = this.GetComponent<Animator>();
+
+            Input.compass.enabled = true;
+            Input.location.Start();
+
+
+
             PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
             if (PlayerCount == 1&&photonView.IsMine)
             {
@@ -93,22 +113,14 @@ namespace Com.MyCompany.MyGame
             }
             
 
-            if (playerUiPrefab != null)
-            {
-                GameObject _uiGo = Instantiate(playerUiPrefab);
-                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-            }
-            else
-            {
-                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
-            }
-#if UNITY_5_4_OR_NEWER
+            
+            #if UNITY_5_4_OR_NEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += (scene, loadingMode) =>
             {
                 this.CalledOnLevelWasLoaded(scene.buildIndex);
             };
-#endif
+            #endif
 
         }
         /// <summary>
@@ -121,11 +133,43 @@ namespace Com.MyCompany.MyGame
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    Slash = true;
                     this.GetComponent<Animator>().SetTrigger("Attack");
                 }
+
+
+                if ((acceleration - accelerationbef).magnitude > slashpowermax)
+                {
+                    slash = true;
+                }
+                if (slash)
+                {
+                    kakudo += Input.gyro.rotationRateUnbiased.z;
+                    if ((acceleration - accelerationbef).magnitude < slashpowermin && kakudo < 0 )
+                    {
+                        this.GetComponent<Animator>().SetTrigger("Attack");
+                        //sword.GetComponent<Animator>().ResetTrigger("SlashR");
+                        slash = false;
+                        time = 0;
+                        kakudo = 0;
+                        //Vibration.Vibrate(1000);
+                    }
+                    else if ((acceleration - accelerationbef).magnitude < slashpowermin && kakudo > 0 )
+                    {
+                        this.GetComponent<Animator>().SetTrigger("Attack");
+                        //animator.ResetTrigger("HitR");
+                        //sword.GetComponent<Animator>().SetTrigger("SlashR");
+                        //sword.GetComponent<Animator>().ResetTrigger("SlashL");
+                        slash = false;
+                        time = 0;
+                        kakudo = 0;
+                    }
+                }
+                accelerationbef = acceleration;
+
             }
-            // trigger Beams active state
             
+
         }
 
         
