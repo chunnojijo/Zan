@@ -66,28 +66,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: samurai.test.007 (1) Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: Synchronization
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 141}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: ObservedComponents.Array.data[1]
-      value: 
-      objectReference: {fileID: 142}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: ObservedComponents.Array.data[2]
-      value: 
-      objectReference: {fileID: 3635242888077262215}
-    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
-      propertyPath: viewIdField
+    - target: {fileID: 2001299622129065788, guid: b417107d568afcb41ade7e5942b8208f,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 295909775160827034, guid: b417107d568afcb41ade7e5942b8208f,
@@ -143,6 +124,42 @@ PrefabInstance:
     - target: {fileID: 295909775160827034, guid: b417107d568afcb41ade7e5942b8208f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494278, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494278, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].Type
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494278, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: m_SynchronizeParameters.Array.data[0].Name
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: Synchronization
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 141}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 142}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 3635242888077262215}
+    - target: {fileID: 534494279, guid: b417107d568afcb41ade7e5942b8208f, type: 3}
+      propertyPath: viewIdField
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6353956548546675050, guid: b417107d568afcb41ade7e5942b8208f,
