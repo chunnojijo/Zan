@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 namespace Com.MyCompany.MyGame
 {
@@ -20,8 +22,17 @@ namespace Com.MyCompany.MyGame
         private GameObject EnterPanel;
 
         [SerializeField]
-        private GameObject EnterButton;
+        private GameObject RandomEnterButton;
 
+        [SerializeField]
+        private GameObject FriendEnterButton;
+
+        [SerializeField]
+        private GameObject DecisionButton;
+
+        [SerializeField]
+        private InputField inputfield;
+        
         
 
         
@@ -52,8 +63,13 @@ namespace Com.MyCompany.MyGame
             PhotonNetwork.GameVersion = gameVersion;
             //Connect();
             ConnectPanel.SetActive(true);
-            EnterButton.SetActive(false);
             EnterPanel.SetActive(false);
+            RandomEnterButton.SetActive(false);
+            FriendEnterButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
+
+           
         }
 
 
@@ -62,12 +78,21 @@ namespace Com.MyCompany.MyGame
             //PhotonNetwork.JoinRandomRoom();
             Debug.Log("Pun Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
             ConnectPanel.SetActive(false);
-            EnterButton.SetActive(true);
             EnterPanel.SetActive(false);
+            RandomEnterButton.SetActive(true);
+            FriendEnterButton.SetActive(true);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
         }
         public override void OnDisconnected(DisconnectCause cause)
         {
             Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("JoinRoomFailed");
+            PhotonNetwork.CreateRoom(inputfield.text, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
         public override void OnJoinRandomFailed(short returnCode, string message)
@@ -78,6 +103,12 @@ namespace Com.MyCompany.MyGame
 
         public override void OnJoinedRoom()
         {
+            ConnectPanel.SetActive(false);
+            EnterPanel.SetActive(true);
+            RandomEnterButton.SetActive(false);
+            FriendEnterButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom(9 called by PUN. Now this client is in a room.");
             
             Debug.Log("We load the BattleRoom");
@@ -95,10 +126,29 @@ namespace Com.MyCompany.MyGame
         {
             
             PhotonNetwork.JoinRandomRoom();
-            ConnectPanel.SetActive(false);
-            EnterButton.SetActive(false);
-            EnterPanel.SetActive(true);
 
+        }
+
+        public void InputLogger()
+        {
+            //string 
+        }
+
+        public void FriendEnterScene()
+        {
+            ConnectPanel.SetActive(false);
+            EnterPanel.SetActive(false);
+            RandomEnterButton.SetActive(false);
+            FriendEnterButton.SetActive(false);
+            DecisionButton.SetActive(true);
+            inputfield.gameObject.SetActive(true);
+        }
+
+        public void ConnectWithFriends()
+        {
+            PhotonNetwork.JoinRoom(inputfield.text);
+            
+            
         }
         #endregion
 

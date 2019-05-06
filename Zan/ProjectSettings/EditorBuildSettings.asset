@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LobyScene.unity
     guid: d7013a96519b2ef44b9dbd3ef55ecf2b
   - enabled: 1
+    path: Assets/Scenes/FriendMatching.unity
+    guid: 5b8c4f9b302da574cbb93fb3fe78b07c
+  - enabled: 1
     path: Assets/Scenes/BattleRoom.unity
     guid: 7f0c4e7c3b447cf44a2a8413454afdc1
   - enabled: 1
