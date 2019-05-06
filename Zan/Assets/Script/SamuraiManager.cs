@@ -17,11 +17,13 @@ namespace Com.MyCompany.MyGame
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(Slash);
+                stream.SendNext(win);
+                stream.SendNext(finish);
             }
             else
             {
-                this.Slash = (bool)stream.ReceiveNext();
+                this.win = (bool)stream.ReceiveNext();
+                finish = (bool)stream.ReceiveNext();
             }
         }
         #endregion
@@ -33,6 +35,11 @@ namespace Com.MyCompany.MyGame
 
         public float slashpowermax = 3;
         public float slashpowermin = 1.5f;
+
+        public bool win;
+        public static bool finish;
+
+        
 
         #endregion
 
@@ -56,14 +63,16 @@ namespace Com.MyCompany.MyGame
 
 
         #region MonoBehaviour CallBacks
-        #if !UNITY_5_4_OR_NEWER
+#if !UNITY_5_4_OR_NEWER
         /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
             this.CalledOnLevelWasLoaded(level);
         }
-        #endif
+#endif
 
+
+        
 
         void CalledOnLevelWasLoaded(int level)
         {
@@ -172,7 +181,16 @@ namespace Com.MyCompany.MyGame
 
         }
 
-        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Weapon")
+            {
+                finish = true;
+                win = false;
+            }
+        }
+
+
 
         #endregion
 
@@ -181,7 +199,7 @@ namespace Com.MyCompany.MyGame
         /// <summary>
         /// Processes the inputs. Maintain a flag representing when the user is pressing Fire.
         /// </summary>
-       
+
 
         #endregion
     }
