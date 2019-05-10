@@ -13,6 +13,12 @@ namespace Com.MyCompany.MyGame
         [Tooltip("The preafab to user for representing the player")]
         public GameObject playerPrefab;
 
+        [SerializeField] GameObject LosePanel;
+        [SerializeField] GameObject WinPanel;
+
+        public bool finish;
+        public bool win;
+
         private void Start()
         {
             if (playerPrefab == null)
@@ -91,7 +97,17 @@ namespace Com.MyCompany.MyGame
         // Update is called once per frame
         void Update()
         {
-
+            if (finish)
+            {
+                if (win)
+                {
+                    WinPanel.SetActive(true);
+                }
+                else
+                {
+                    LosePanel.SetActive(true);
+                }
+            }
         }
     }
 

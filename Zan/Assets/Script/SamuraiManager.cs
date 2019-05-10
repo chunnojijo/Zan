@@ -59,6 +59,7 @@ namespace Com.MyCompany.MyGame
         private float time;
         private bool slash;
         private Animator animator;
+        private GameObject GameManager;
         #endregion
 
 
@@ -106,7 +107,7 @@ namespace Com.MyCompany.MyGame
             Input.compass.enabled = true;
             Input.location.Start();
 
-
+            GameManager = GameObject.Find("GameManager");
 
             PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
             if (PlayerCount == 1&&photonView.IsMine)
@@ -177,7 +178,9 @@ namespace Com.MyCompany.MyGame
                 accelerationbef = acceleration;
 
             }
-            
+
+            GameManager.GetComponent<GameManagerSamurai>().finish = finish;
+            GameManager.GetComponent<GameManagerSamurai>().win = win;
 
         }
 
