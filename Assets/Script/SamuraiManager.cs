@@ -78,10 +78,10 @@ namespace Com.MyCompany.MyGame
         void CalledOnLevelWasLoaded(int level)
         {
             // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
+            /*if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
             {
                 transform.position = new Vector3(0f, 5f, 0f);
-            }
+            }*/
         }
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
@@ -112,13 +112,13 @@ namespace Com.MyCompany.MyGame
             PlayerCount = PhotonNetwork.CurrentRoom.PlayerCount;
             if (PlayerCount == 1&&photonView.IsMine)
             {
-                this.transform.position = new Vector3(0, 0, -1);
+                this.transform.position = new Vector3(0, 0, -0.6f);
                 this.transform.rotation = Quaternion.Euler(0, 0, 0);
                 
             }
             else if (PlayerCount == 2&&photonView.IsMine)
             {
-                this.transform.position = new Vector3(0, 0, 1);
+                this.transform.position = new Vector3(0, 0, 0.6f);
                 this.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             
