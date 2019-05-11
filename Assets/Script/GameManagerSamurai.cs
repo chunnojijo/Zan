@@ -21,6 +21,8 @@ namespace Com.MyCompany.MyGame
 
         private void Start()
         {
+            LosePanel.SetActive(false);
+            WinPanel.SetActive(false);
             if (playerPrefab == null)
             {
                 Debug.LogError("<Color=Read><a>Missing</a></Color> player Prefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -31,7 +33,6 @@ namespace Com.MyCompany.MyGame
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
                     PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
-
                 }
                 else
                 {
@@ -97,15 +98,20 @@ namespace Com.MyCompany.MyGame
         // Update is called once per frame
         void Update()
         {
+            finish = SamuraiManager.finish;
+            win = SamuraiManager.LocalPlayerInstance.GetComponent<SamuraiManager>().win;
             if (finish)
             {
+                Debug.LogWarning("Finish");
                 if (win)
                 {
+                    Debug.LogWarning("Win");
                     WinPanel.SetActive(true);
                 }
                 else
                 {
                     LosePanel.SetActive(true);
+                    Debug.LogWarning("Lose");
                 }
             }
         }

@@ -36,7 +36,7 @@ namespace Com.MyCompany.MyGame
         public float slashpowermax = 3;
         public float slashpowermin = 1.5f;
 
-        public bool win;
+        public bool win=true;
         public static bool finish;
 
         
@@ -186,10 +186,12 @@ namespace Com.MyCompany.MyGame
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Weapon")
+            Debug.LogWarning("Collision");
+            if (other.tag == "Weapon"&& photonView.IsMine)
             {
-                finish = true;
+                Debug.LogWarning("Death");
                 win = false;
+                finish = true;
             }
         }
 
