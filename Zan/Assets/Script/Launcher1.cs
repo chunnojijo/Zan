@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -20,7 +21,16 @@ namespace Com.MyCompany.MyGame
         private GameObject EnterPanel;
 
         [SerializeField]
-        private GameObject EnterButton;
+        private GameObject EnterRandomButton;
+
+        [SerializeField]
+        private GameObject EnterFriendButton;
+
+        [SerializeField]
+        private GameObject DecisionButton;
+
+        [SerializeField]
+        private InputField inputfield;
 
         
 
@@ -52,8 +62,11 @@ namespace Com.MyCompany.MyGame
             PhotonNetwork.GameVersion = gameVersion;
             //Connect();
             ConnectPanel.SetActive(true);
-            EnterButton.SetActive(false);
             EnterPanel.SetActive(false);
+            EnterRandomButton.SetActive(false);
+            EnterFriendButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
         }
 
 
@@ -62,8 +75,11 @@ namespace Com.MyCompany.MyGame
             //PhotonNetwork.JoinRandomRoom();
             Debug.Log("Pun Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
             ConnectPanel.SetActive(false);
-            EnterButton.SetActive(true);
             EnterPanel.SetActive(false);
+            EnterRandomButton.SetActive(true);
+            EnterFriendButton.SetActive(true);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
         }
         public override void OnDisconnected(DisconnectCause cause)
         {
@@ -74,6 +90,12 @@ namespace Com.MyCompany.MyGame
         {
             Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
             PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("JoinRoomFailed");
+            PhotonNetwork.CreateRoom(inputfield.text, new RoomOptions { MaxPlayers = maxPlayersPerRoom });
         }
 
         public override void OnJoinedRoom()
@@ -96,10 +118,36 @@ namespace Com.MyCompany.MyGame
             
             PhotonNetwork.JoinRandomRoom();
             ConnectPanel.SetActive(false);
-            EnterButton.SetActive(false);
             EnterPanel.SetActive(true);
+            EnterRandomButton.SetActive(false);
+            EnterFriendButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
 
         }
+
+        public void FriendPasswordMode()
+        {
+
+            ConnectPanel.SetActive(false);
+            EnterPanel.SetActive(false);
+            EnterRandomButton.SetActive(false);
+            EnterFriendButton.SetActive(false);
+            DecisionButton.SetActive(true);
+            inputfield.gameObject.SetActive(true);
+        }
+
+        public void ConnectToFriends()
+        {
+            PhotonNetwork.JoinRoom(inputfield.text);
+            ConnectPanel.SetActive(false);
+            EnterPanel.SetActive(true);
+            EnterRandomButton.SetActive(false);
+            EnterFriendButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(true);
+        }
+
         #endregion
 
 
