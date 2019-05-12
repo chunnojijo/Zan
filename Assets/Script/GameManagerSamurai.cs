@@ -18,6 +18,7 @@ namespace Com.MyCompany.MyGame
 
         public bool finish;
         public bool win;
+        private bool first = true;
 
         private void Start()
         {
@@ -98,10 +99,11 @@ namespace Com.MyCompany.MyGame
         // Update is called once per frame
         void Update()
         {
-            finish = SamuraiManager.finish;
-            win = SamuraiManager.LocalPlayerInstance.GetComponent<SamuraiManager>().win;
-            if (finish)
+            //finish = SamuraiManager.finish;
+            //win = SamuraiManager.LocalPlayerInstance.GetComponent<SamuraiManager>().win;
+            if (SamuraiManager.finish&&first)
             {
+                first = false;
                 Debug.LogWarning("Finish");
                 if (win)
                 {

@@ -99,7 +99,8 @@ namespace Com.MyCompany.MyGame
 
         private void Start()
         {
-
+            finish = false;
+            win=true;
             Input.gyro.enabled = true;
             acceleration = Input.acceleration;
             animator = this.GetComponent<Animator>();
@@ -176,11 +177,10 @@ namespace Com.MyCompany.MyGame
                     }
                 }
                 accelerationbef = acceleration;
-
+                GameManager.GetComponent<GameManagerSamurai>().finish = finish;
+                GameManager.GetComponent<GameManagerSamurai>().win = win;
             }
-
-            GameManager.GetComponent<GameManagerSamurai>().finish = finish;
-            GameManager.GetComponent<GameManagerSamurai>().win = win;
+            
 
         }
 

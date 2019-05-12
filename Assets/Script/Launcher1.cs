@@ -30,7 +30,11 @@ namespace Com.MyCompany.MyGame
         private GameObject DecisionButton;
 
         [SerializeField]
+        private GameObject BackButton;
+
+        [SerializeField]
         private InputField inputfield;
+        
 
         
 
@@ -65,6 +69,7 @@ namespace Com.MyCompany.MyGame
             EnterPanel.SetActive(false);
             EnterRandomButton.SetActive(false);
             EnterFriendButton.SetActive(false);
+            BackButton.SetActive(false);
             DecisionButton.SetActive(false);
             inputfield.gameObject.SetActive(false);
         }
@@ -78,6 +83,7 @@ namespace Com.MyCompany.MyGame
             EnterPanel.SetActive(false);
             EnterRandomButton.SetActive(true);
             EnterFriendButton.SetActive(true);
+            BackButton.SetActive(false);
             DecisionButton.SetActive(false);
             inputfield.gameObject.SetActive(false);
         }
@@ -121,6 +127,7 @@ namespace Com.MyCompany.MyGame
             EnterPanel.SetActive(true);
             EnterRandomButton.SetActive(false);
             EnterFriendButton.SetActive(false);
+            BackButton.SetActive(false);
             DecisionButton.SetActive(false);
             inputfield.gameObject.SetActive(false);
 
@@ -133,6 +140,7 @@ namespace Com.MyCompany.MyGame
             EnterPanel.SetActive(false);
             EnterRandomButton.SetActive(false);
             EnterFriendButton.SetActive(false);
+            BackButton.SetActive(true);
             DecisionButton.SetActive(true);
             inputfield.gameObject.SetActive(true);
         }
@@ -144,8 +152,20 @@ namespace Com.MyCompany.MyGame
             EnterPanel.SetActive(true);
             EnterRandomButton.SetActive(false);
             EnterFriendButton.SetActive(false);
+            BackButton.SetActive(false);
             DecisionButton.SetActive(false);
-            inputfield.gameObject.SetActive(true);
+            inputfield.gameObject.SetActive(false);
+        }
+
+        public void Back()
+        {
+            ConnectPanel.SetActive(false);
+            EnterPanel.SetActive(false);
+            EnterRandomButton.SetActive(true);
+            EnterFriendButton.SetActive(true);
+            BackButton.SetActive(false);
+            DecisionButton.SetActive(false);
+            inputfield.gameObject.SetActive(false);
         }
 
         #endregion
