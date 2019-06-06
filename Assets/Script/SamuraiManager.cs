@@ -140,7 +140,7 @@ namespace Com.MyCompany.MyGame
         void Update()
         {
             if (!photonView.IsMine && PhotonNetwork.IsConnected) return;
-            if (photonView.IsMine)
+            if (photonView.IsMine&&GameManager.GetComponent<GameManagerSamurai>().StartEventEnd)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

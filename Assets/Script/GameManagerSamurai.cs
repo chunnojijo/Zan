@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -15,14 +16,36 @@ namespace Com.MyCompany.MyGame
 
         [SerializeField] GameObject LosePanel;
         [SerializeField] GameObject WinPanel;
+        [SerializeField] Camera camera;
+        [SerializeField] GameObject Panel;
+        [SerializeField] GameObject MatchingText;
+        [SerializeField] float FadeOutSpeed=1;
 
         public bool finish;
         public bool win;
+        public bool StartEventEnd = false;
         private bool first = true;
+        private bool firstPerson = false;
+        public static bool StartEventSwitch = false;
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(StartEventSwitch);
+            }
+            else
+            {
+                StartEventSwitch= (bool)stream.ReceiveNext();
+            }
+        }
+
+
 
         private void Start()
         {
-            LosePanel.SetActive(false);
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 1) firstPerson = true;
+                LosePanel.SetActive(false);
             WinPanel.SetActive(false);
             if (playerPrefab == null)
             {
@@ -83,11 +106,17 @@ namespace Com.MyCompany.MyGame
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
                 //LoadArea();
             }
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+            {
+                camera.gameObject.GetComponent<Animator>().SetTrigger("StartEvent");
+            }
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             Debug.LogFormat("OnPlayerLeftRoom() {0}", otherPlayer.NickName);
+
+            
 
             if (PhotonNetwork.IsMasterClient)
             {
@@ -101,6 +130,14 @@ namespace Com.MyCompany.MyGame
         {
             //finish = SamuraiManager.finish;
             //win = SamuraiManager.LocalPlayerInstance.GetComponent<SamuraiManager>().win;
+
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 2&&!firstPerson )
+            {
+                StartEventSwitch = true;
+                StartCoroutine("StartEvent");
+            }
+
+            if(StartEventSwitch)StartCoroutine("StartEvent");
             if (SamuraiManager.finish&&first)
             {
                 first = false;
@@ -116,7 +153,28 @@ namespace Com.MyCompany.MyGame
                     Debug.LogWarning("Lose");
                 }
             }
+
+            if (camera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CameraEventEnd"))
+            {
+                StartEventEnd = true;
+            }
         }
+
+        private IEnumerator StartEvent()
+        {
+            while (Panel.GetComponent<Image>().color.a >= 0)
+            {
+                Panel.GetComponent<Image>().color -= new Color(0, 0, 0, FadeOutSpeed * Time.deltaTime);
+                yield return null;
+                MatchingText.GetComponent<Text>().color -= new Color(0, 0, 0, FadeOutSpeed * Time.deltaTime);
+                yield return null;
+            }
+            camera.GetComponent<Animator>().SetTrigger("StartEvent");
+            
+        }
+
+
+
     }
 
 }
